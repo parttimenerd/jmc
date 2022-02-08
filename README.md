@@ -1,6 +1,8 @@
 ![JMC Build](../../workflows/validate/badge.svg) 
 # Mission Control
 
+*This is a friendly fork of [openjdk/jmc](https://github.com/openjdk/jmc). This fork aims to integrate changes and improvements for the specific needs of SAP customers. However, the master branch will not differ from the upstream project. The profiler works with SapMachine as well as with SAP JVM. Only the main branch `distr` differs from the upstream project.*
+
 Mission Control is an open source production time profiling and diagnostics tool for Java.
 
 Builds of Mission Control can currently be found in the Oracle JDK on supported platforms and in the Eclipse marketplace. 
