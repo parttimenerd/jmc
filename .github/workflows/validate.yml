@@ -54,7 +54,7 @@ jobs:
       with:
         fetch-depth: 0
     - name : Check latest copyright year
-      run: ./scripts/checkcopyrightyear.sh https://github.com/openjdk/jmc.git master
+      run: ./scripts/checkcopyrightyear.sh https://github.com/SAP/jmc.git sap
   build_and_test:
     name: Build and Test on ${{ matrix.os }}
     strategy:
@@ -74,14 +74,14 @@ jobs:
     - name: Set up Java 17
       uses: actions/setup-java@v5
       with:
-        distribution: temurin
+        distribution: sapmachine
         java-version: '17'
         java-package: jdk
         mvn-toolchain-id: 'JavaSE-17'
     - name: Set up Java 21
       uses: actions/setup-java@v5
       with:
-        distribution: temurin
+        distribution: sapmachine
         java-version: '21'
         java-package: jdk
         mvn-toolchain-id: 'JavaSE-21'

@@ -33,8 +33,8 @@
 # WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-UPSTREAM_URL=${1:-https://github.com/openjdk/jmc.git}
-UPSTREAM_BRANCH=${2:-master}
+UPSTREAM_URL=${1:-https://github.com/SAP/jmc.git}
+UPSTREAM_BRANCH=${2:-sap}
 
 # set remote for upstream repository
 git remote -v | grep -w upstream || git remote add upstream "$UPSTREAM_URL"
