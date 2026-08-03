@@ -90,6 +90,7 @@
 		<module>org.openjdk.jmc.flightrecorder.pde</module>
 		<module>org.openjdk.jmc.flightrecorder.rules.extensionprovider</module>
 		<module>org.openjdk.jmc.flightrecorder.ui</module>
+		<module>org.openjdk.jmc.flightrecorder.cjfr</module>
 		<module>org.openjdk.jmc.greychart</module>
 		<module>org.openjdk.jmc.greychart.ui</module>
 		<module>org.openjdk.jmc.ide.jdt</module>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2025, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2026, Oracle and/or its affiliates. All rights reserved.
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -162,7 +162,7 @@ public class RecordingLoader extends Job {
 		});
 	}
 
-	private EventArrays doCreateRecording(File file, ProgressMonitor lm)
+	protected EventArrays doCreateRecording(File file, Runnable lm)
 			throws CouldNotLoadRecordingException, IOException {
 		// FIXME: Can we calculate available memory without resorting to System.gc?
 		System.gc();
@@ -184,7 +184,7 @@ public class RecordingLoader extends Job {
 		if (IOToolkit.isCompressedFile(file)) {
 			file = unzipFile(file);
 		}
-		return loadFromUnzippedFile(file, fileName, lm, availableMemory);
+		return loadFromUnzippedFile(file, fileName, (ProgressMonitor) lm, availableMemory);
 	}
 
 	private static void checkForJRockitRecording(EventArrays events) {
@@ -246,7 +246,7 @@ public class RecordingLoader extends Job {
 		throw new NotEnoughMemoryException();
 	}
 
-	private boolean shouldShowHiddenFrames() {
+	protected boolean shouldShowHiddenFrames() {
 		return FlightRecorderUI.getDefault().getPreferenceStore()
 				.getBoolean(PreferenceKeys.PROPERTY_STACKTRACE_SHOW_HIDDEN_FRAMES);
 	}
