@@ -225,6 +225,7 @@
 										<Bundle-SymbolicName>me.bechberger.condensed.data</Bundle-SymbolicName>
 										<Bundle-Name>Condensed Data</Bundle-Name>
 										<Export-Package>me.bechberger.*</Export-Package>
+										<Require-Bundle>org.openjdk.jmc.flightrecorder.writer;resolution:=optional</Require-Bundle>
 										<Import-Package>*;resolution:=optional</Import-Package>
 									</instructions>
 								</artifact>
