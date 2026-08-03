@@ -167,6 +167,11 @@
 			<version>${revision}${changelist}</version>
 		</dependency>
 		<dependency>
+			<groupId>me.bechberger.util</groupId>
+			<artifactId>femtojson</artifactId>
+			<version>0.4.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.openjdk.jmc</groupId>
 			<artifactId>rjmx.common</artifactId>
 			<version>${revision}${changelist}</version>
