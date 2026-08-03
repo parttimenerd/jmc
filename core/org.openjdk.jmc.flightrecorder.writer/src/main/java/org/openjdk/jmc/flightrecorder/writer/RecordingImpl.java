@@ -160,6 +160,10 @@ public final class RecordingImpl extends Recording {
 		}
 	}
 
+	public void setGmtOffset(long gmtOffsetMillis, String locale) {
+		metadata.setRegion(gmtOffsetMillis, locale);
+	}
+
 	@Override
 	public RecordingImpl rotateChunk() {
 		Chunk chunk = getChunk();
