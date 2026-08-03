@@ -5,6 +5,8 @@ Bundle-Name: Mission Control Flight Recorder Writer
 Bundle-SymbolicName: org.openjdk.jmc.flightrecorder.writer;singleton:=true
 Bundle-Version: 10.0.0.qualifier
 Bundle-Vendor: Oracle Corporation
-Export-Package: org.openjdk.jmc.flightrecorder.writer.api
+Export-Package: org.openjdk.jmc.flightrecorder.writer.api,
+ org.openjdk.jmc.flightrecorder.writer,
+ org.openjdk.jmc.flightrecorder.writer.util
 Require-Bundle: org.openjdk.jmc.common;visibility:=reexport
 Automatic-Module-Name: org.openjdk.jmc.flightrecorder.writer
