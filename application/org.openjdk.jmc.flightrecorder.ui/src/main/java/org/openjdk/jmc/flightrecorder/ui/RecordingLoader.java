@@ -162,8 +162,7 @@ public class RecordingLoader extends Job {
 		});
 	}
 
-	protected EventArrays doCreateRecording(File file, Runnable lm)
-			throws CouldNotLoadRecordingException, IOException {
+	protected EventArrays doCreateRecording(File file, Runnable lm) throws CouldNotLoadRecordingException, IOException {
 		// FIXME: Can we calculate available memory without resorting to System.gc?
 		System.gc();
 		Runtime runtime = Runtime.getRuntime();

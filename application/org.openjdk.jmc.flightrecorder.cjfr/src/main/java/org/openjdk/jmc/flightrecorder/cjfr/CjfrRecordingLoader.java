@@ -38,22 +38,19 @@ public class CjfrRecordingLoader extends RecordingLoader {
 	}
 
 	@Override
-	protected EventArrays doCreateRecording(File file, Runnable lm)
-			throws CouldNotLoadRecordingException, IOException {
+	protected EventArrays doCreateRecording(File file, Runnable lm) throws CouldNotLoadRecordingException, IOException {
 		if (!file.getName().endsWith(".cjfr")) { //$NON-NLS-1$
 			return super.doCreateRecording(file, lm);
 		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		try (CondensedInputStream cin = new CondensedInputStream(
-				new BufferedInputStream(new FileInputStream(file)))) {
+		try (CondensedInputStream cin = new CondensedInputStream(new BufferedInputStream(new FileInputStream(file)))) {
 			BasicJFRReader reader = new BasicJFRReader(cin);
 			WritingJFRReader.toJFRStream(reader, baos);
 		}
 		boolean hideExperimentals = !FlightRecorderUI.getDefault().includeExperimentalEventsAndFields();
 		boolean ignoreTruncated = FlightRecorderUI.getDefault().allowIncompleteRecordingFile();
 		boolean showHiddenFrames = shouldShowHiddenFrames();
-		return JfrLoaderToolkit.loadStream(
-				new ByteArrayInputStream(baos.toByteArray()),
-				hideExperimentals, ignoreTruncated, showHiddenFrames);
+		return JfrLoaderToolkit.loadStream(new ByteArrayInputStream(baos.toByteArray()), hideExperimentals,
+				ignoreTruncated, showHiddenFrames);
 	}
 }

@@ -13,8 +13,8 @@ import org.openjdk.jmc.flightrecorder.ui.JfrEditor;
 import org.openjdk.jmc.flightrecorder.ui.RecordingLoader;
 
 /**
- * Eclipse editor for .cjfr (condensed JFR) files. Inflates the recording to standard JFR bytes
- * in memory and hands them to the standard JFR loading machinery.
+ * Eclipse editor for .cjfr (condensed JFR) files. Inflates the recording to standard JFR bytes in
+ * memory and hands them to the standard JFR loading machinery.
  */
 public class CjfrEditor extends JfrEditor {
 
