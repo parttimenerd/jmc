@@ -63,7 +63,6 @@
             <unit id="radiance-animation" version="8.5.0"/>
             <unit id="org.awaitility" version="4.0.0"/>
             <unit id="me.bechberger.condensed.data" version="0.1.2"/>
-            <unit id="me.bechberger.util.femtojson" version="0.4.1"/>
             <repository location="http://localhost:8080/site"/>
         </location>
         <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
