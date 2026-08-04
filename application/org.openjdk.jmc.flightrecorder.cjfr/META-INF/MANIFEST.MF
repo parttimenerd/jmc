@@ -7,14 +7,11 @@ Bundle-Version: 10.0.0.qualifier
 Bundle-Vendor: SAP SE
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.openjdk.jmc.flightrecorder,
  org.openjdk.jmc.flightrecorder.ui,
- org.openjdk.jmc.flightrecorder.writer,
  me.bechberger.condensed.data
 Import-Package: org.eclipse.jface.dialogs,
- org.openjdk.jmc.flightrecorder,
- org.openjdk.jmc.flightrecorder.internal,
  org.openjdk.jmc.flightrecorder.ui,
+ org.openjdk.jmc.ui,
  me.bechberger.condensed,
  me.bechberger.jfr
 Bundle-ActivationPolicy: lazy

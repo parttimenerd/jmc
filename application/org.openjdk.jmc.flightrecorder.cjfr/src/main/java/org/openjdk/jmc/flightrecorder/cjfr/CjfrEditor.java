@@ -8,13 +8,24 @@
  */
 package org.openjdk.jmc.flightrecorder.cjfr;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.eclipse.jface.dialogs.ProgressIndicator;
 import org.openjdk.jmc.flightrecorder.ui.JfrEditor;
 import org.openjdk.jmc.flightrecorder.ui.RecordingLoader;
+import org.openjdk.jmc.ui.MCPathEditorInput;
+
+import me.bechberger.condensed.CondensedInputStream;
+import me.bechberger.jfr.BasicJFRReader;
+import me.bechberger.jfr.WritingJFRReader;
 
 /**
- * Eclipse editor for .cjfr (condensed JFR) files. Inflates the recording to standard JFR bytes in
- * memory and hands them to the standard JFR loading machinery.
+ * Eclipse editor for .cjfr (condensed JFR) files. Inflates the recording to a temporary .jfr file
+ * and delegates to the standard JFR loading machinery.
  */
 public class CjfrEditor extends JfrEditor {
 
@@ -22,6 +33,20 @@ public class CjfrEditor extends JfrEditor {
 
 	@Override
 	protected RecordingLoader createRecordingLoader(ProgressIndicator progressIndicator) {
-		return new CjfrRecordingLoader(this, progressIndicator);
+		File cjfrFile = MCPathEditorInput.getFile(getEditorInput());
+		try {
+			File tempJfr = File.createTempFile("cjfr-inflate-", ".jfr"); //$NON-NLS-1$ //$NON-NLS-2$
+			tempJfr.deleteOnExit();
+			try (CondensedInputStream cin = new CondensedInputStream(
+					new BufferedInputStream(new FileInputStream(cjfrFile)));
+					FileOutputStream fos = new FileOutputStream(tempJfr)) {
+				BasicJFRReader reader = new BasicJFRReader(cin);
+				WritingJFRReader.toJFRStream(reader, fos);
+			}
+			setInput(new MCPathEditorInput(tempJfr, false));
+		} catch (IOException e) {
+			// Fall through: let RecordingLoader fail gracefully on the original file
+		}
+		return new RecordingLoader(this, progressIndicator);
 	}
 }
