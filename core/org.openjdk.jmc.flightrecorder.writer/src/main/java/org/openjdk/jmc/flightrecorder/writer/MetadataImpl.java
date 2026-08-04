@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2021, 2026, Oracle and/or its affiliates. All rights reserved.
- * Copyright (c) 2021, 2026, Datadog, Inc. All rights reserved.
+ * Copyright (c) 2021, 2025, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2021, 2025, Datadog, Inc. All rights reserved.
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -66,9 +66,6 @@ final class MetadataImpl {
 	private static final String DIMENSION_KEY = "dimension";
 	private static final String ANNOTATION_KEY = "annotation";
 	private static final String VAL_1_VALUE = "1";
-	private static final String GMT_OFFSET_KEY = "gmtOffset";
-	private static final String LOCALE_KEY = "locale";
-	private static final long GMT_OFFSET_UNSET = Long.MIN_VALUE;
 
 	private final AtomicLong typeCounter = new AtomicLong(1);
 	private final ConstantPools constantPools;
@@ -78,8 +75,6 @@ final class MetadataImpl {
 	private final Set<ResolvableType> unresolvedTypes = new CopyOnWriteArraySet<>();
 
 	private volatile TypesImpl types;
-	private volatile long regionGmtOffsetMillis = GMT_OFFSET_UNSET;
-	private volatile String regionLocale;
 
 	MetadataImpl(ConstantPools constantPools) {
 		this.constantPools = constantPools;
@@ -111,19 +106,6 @@ final class MetadataImpl {
 		storeString(REGION_KEY);
 		storeString(DIMENSION_KEY);
 		storeString(ANNOTATION_KEY);
-		storeString(GMT_OFFSET_KEY);
-		storeString(LOCALE_KEY);
-	}
-
-	void setRegion(long gmtOffsetMillis, String locale) {
-		this.regionGmtOffsetMillis = gmtOffsetMillis;
-		this.regionLocale = locale;
-		if (gmtOffsetMillis != GMT_OFFSET_UNSET) {
-			storeString(Long.toString(gmtOffsetMillis));
-		}
-		if (locale != null) {
-			storeString(locale);
-		}
 	}
 
 	/**
@@ -398,17 +380,6 @@ final class MetadataImpl {
 	}
 
 	private void writeRegion(LEB128Writer metaWriter) {
-		if (regionGmtOffsetMillis != GMT_OFFSET_UNSET) {
-			boolean hasLocale = regionLocale != null;
-			int attributes = hasLocale ? 2 : 1;
-			metaWriter.writeInt(stringIndex(REGION_KEY)).writeInt(attributes).writeInt(stringIndex(GMT_OFFSET_KEY))
-					.writeInt(stringIndex(Long.toString(regionGmtOffsetMillis)));
-			if (hasLocale) {
-				metaWriter.writeInt(stringIndex(LOCALE_KEY)).writeInt(stringIndex(regionLocale));
-			}
-			metaWriter.writeInt(0); // 0 child elements
-			return;
-		}
 		metaWriter.writeInt(stringIndex(REGION_KEY)).writeInt(0) // 0 attributes
 				.writeInt(0); // 0 elements
 	}

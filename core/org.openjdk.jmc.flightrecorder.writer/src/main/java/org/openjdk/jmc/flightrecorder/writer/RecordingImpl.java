@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2021, 2026, Oracle and/or its affiliates. All rights reserved.
- * Copyright (c) 2021, 2026, Datadog, Inc. All rights reserved.
+ * Copyright (c) 2021, 2025, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2021, 2025, Datadog, Inc. All rights reserved.
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -158,10 +158,6 @@ public final class RecordingImpl extends Recording {
 				globalWriter.writeBytes(w.export());
 			}
 		}
-	}
-
-	public void setGmtOffset(long gmtOffsetMillis, String locale) {
-		metadata.setRegion(gmtOffsetMillis, locale);
 	}
 
 	@Override
