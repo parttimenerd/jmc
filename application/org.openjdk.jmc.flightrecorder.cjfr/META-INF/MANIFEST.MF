@@ -4,7 +4,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Name: Condensed Flight Recording Plug-in
 Bundle-SymbolicName: org.openjdk.jmc.flightrecorder.cjfr;singleton:=true
 Bundle-Version: 10.0.0.qualifier
-Bundle-Vendor: Johannes Bechberger
+Bundle-Vendor: SAP SE
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.openjdk.jmc.flightrecorder,

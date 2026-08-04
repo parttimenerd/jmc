@@ -145,6 +145,7 @@ public class JfrEditor extends EditorPart implements INavigationLocationProvider
 		createRecordingLoader(progressIndicator).schedule();
 	}
 
+	/** Overloaded by extending editors */
 	protected RecordingLoader createRecordingLoader(ProgressIndicator progressIndicator) {
 		return new RecordingLoader(this, progressIndicator);
 	}
