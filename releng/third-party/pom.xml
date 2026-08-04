@@ -217,7 +217,10 @@
 									</instructions>
 								</artifact>
 								<artifact>
-									<id>me.bechberger:condensed-data:${condensed-data.version}</id>
+									<!-- Use the -jmc classifier: writer classes excluded, JMC's
+									     flightrecorder.writer bundle supplies them at runtime.
+									     This avoids shaded-copy drift when JMC's writer evolves. -->
+									<id>me.bechberger:condensed-data:${condensed-data.version}:jar:jmc</id>
 									<transitive>false</transitive>
 									<source>false</source>
 									<override>true</override>
@@ -225,6 +228,7 @@
 										<Bundle-SymbolicName>me.bechberger.condensed.data</Bundle-SymbolicName>
 										<Bundle-Name>Condensed Data</Bundle-Name>
 										<Export-Package>me.bechberger.*</Export-Package>
+										<Require-Bundle>org.openjdk.jmc.flightrecorder.writer</Require-Bundle>
 										<Import-Package>*;resolution:=optional</Import-Package>
 									</instructions>
 								</artifact>

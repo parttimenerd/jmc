@@ -8,7 +8,8 @@ Bundle-Vendor: SAP SE
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.openjdk.jmc.flightrecorder.ui,
- me.bechberger.condensed.data
+ me.bechberger.condensed.data,
+ org.openjdk.jmc.flightrecorder.writer
 Import-Package: org.openjdk.jmc.ui,
  me.bechberger.condensed,
  me.bechberger.jfr
