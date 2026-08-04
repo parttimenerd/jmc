@@ -220,7 +220,7 @@
 									<!-- Use the -jmc classifier: writer classes excluded, JMC's
 									     flightrecorder.writer bundle supplies them at runtime.
 									     This avoids shaded-copy drift when JMC's writer evolves. -->
-									<id>me.bechberger:condensed-data:${condensed-data.version}:jar:jmc</id>
+									<id>me.bechberger:condensed-data:jar:jmc:${condensed-data.version}</id>
 									<transitive>false</transitive>
 									<source>false</source>
 									<override>true</override>
