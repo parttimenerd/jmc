@@ -142,12 +142,7 @@ public class JfrEditor extends EditorPart implements INavigationLocationProvider
 		resultContainer.addDisposeListener(e -> saveCurrentPageState());
 		ProgressIndicator progressIndicator = CompositeToolkit.createWaitIndicator(toolkit.createComposite(parent),
 				toolkit);
-		createRecordingLoader(progressIndicator).schedule();
-	}
-
-	/** Overloaded by extending editors */
-	protected RecordingLoader createRecordingLoader(ProgressIndicator progressIndicator) {
-		return new RecordingLoader(this, progressIndicator);
+		new RecordingLoader(this, progressIndicator).schedule();
 	}
 
 	@Override

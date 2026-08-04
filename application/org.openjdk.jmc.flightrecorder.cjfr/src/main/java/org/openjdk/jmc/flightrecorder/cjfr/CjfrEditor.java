@@ -14,9 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.eclipse.jface.dialogs.ProgressIndicator;
+import org.eclipse.swt.widgets.Composite;
 import org.openjdk.jmc.flightrecorder.ui.JfrEditor;
-import org.openjdk.jmc.flightrecorder.ui.RecordingLoader;
 import org.openjdk.jmc.ui.MCPathEditorInput;
 
 import me.bechberger.condensed.CondensedInputStream;
@@ -32,7 +31,7 @@ public class CjfrEditor extends JfrEditor {
 	public static final String EDITOR_ID = "org.openjdk.jmc.flightrecorder.cjfr.CjfrEditor"; //$NON-NLS-1$
 
 	@Override
-	protected RecordingLoader createRecordingLoader(ProgressIndicator progressIndicator) {
+	public void createPartControl(Composite parent) {
 		File cjfrFile = MCPathEditorInput.getFile(getEditorInput());
 		try {
 			File tempJfr = File.createTempFile("cjfr-inflate-", ".jfr"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -40,13 +39,12 @@ public class CjfrEditor extends JfrEditor {
 			try (CondensedInputStream cin = new CondensedInputStream(
 					new BufferedInputStream(new FileInputStream(cjfrFile)));
 					FileOutputStream fos = new FileOutputStream(tempJfr)) {
-				BasicJFRReader reader = new BasicJFRReader(cin);
-				WritingJFRReader.toJFRStream(reader, fos);
+				WritingJFRReader.toJFRStream(new BasicJFRReader(cin), fos);
 			}
 			setInput(new MCPathEditorInput(tempJfr, false));
 		} catch (IOException e) {
 			// Fall through: let RecordingLoader fail gracefully on the original file
 		}
-		return new RecordingLoader(this, progressIndicator);
+		super.createPartControl(parent);
 	}
 }
